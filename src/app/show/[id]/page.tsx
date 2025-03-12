@@ -23,20 +23,28 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         <div className='col-span-12 md:col-span-3 flex flex-col items-center gap-4'>
           <div className='sticky top-4 flex flex-col gap-2 items-center justify-center'>
             <div className='flex items-center justify-center relative'>
-              <div className='flex items-center justify-center flex-col'>
-                <Image
-                  src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}
-                  width={1000}
-                  height={1000}
-                  alt={data?.original_name || ''}
-                  className='rounded-lg md:rounded-t-md drop-shadow-2xl w-60 md:w-full'
-                />
-                <Badge
-                  variant={badgeColor(data?.status || '')}
-                  className='shadow text-sm -mt-10 z-10'
-                >
-                  {data?.status}
-                </Badge>
+              <div className='flex items-center justify-center flex-col w-full'>
+                {data?.poster_path ? (
+                  <>
+                    <Image
+                      src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}
+                      width={1000}
+                      height={1000}
+                      alt={data?.original_name || ''}
+                      className='rounded-lg md:rounded-t-md drop-shadow-2xl w-60 md:w-full'
+                    />
+                    <Badge
+                      variant={badgeColor(data?.status || '')}
+                      className='shadow text-sm -mt-10 z-10'
+                    >
+                      {data?.status}
+                    </Badge>
+                  </>
+                ) : (
+                  <Badge variant={badgeColor(data?.status || '')} className='shadow text-sm'>
+                    {data?.status}
+                  </Badge>
+                )}
               </div>
             </div>
 
