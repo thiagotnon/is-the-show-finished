@@ -1,36 +1,70 @@
 'use client';
 
 import { useSearch } from '@/hooks/use-search';
-import { LoaderPinwheel } from 'lucide-react';
+import { LoaderPinwheel, X } from 'lucide-react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { List } from './list';
 import { Input } from './ui/input';
 
 export function Searchbar() {
+  const { replace } = useRouter();
+  const pathname = usePathname();
+
+  const searchParams = useSearchParams();
+  const query = searchParams.get('query');
+
   const [debouncedQuery, setDebouncedQuery] = React.useState('');
-  const [query, setQuery] = React.useState('');
+  const [searchValue, setSearchValue] = React.useState(query || '');
+
+  const { data, isFetching } = useSearch(debouncedQuery);
+
+  const handleClear = () => {
+    setSearchValue('');
+    const params = new URLSearchParams(searchParams);
+    params.delete('query');
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
   React.useEffect(() => {
     const timeout = setTimeout(() => {
-      setDebouncedQuery(query);
-    }, 500); // 500ms de debounce
+      setDebouncedQuery(searchValue);
+
+      const params = new URLSearchParams(searchParams);
+
+      if (!searchValue) {
+        params.delete('query');
+      } else {
+        params.set('query', searchValue);
+      }
+
+      replace(`${pathname}?${params.toString()}`, { scroll: false });
+    }, 500);
 
     return () => clearTimeout(timeout);
-  }, [query]);
-
-  const { data, isFetching } = useSearch(debouncedQuery);
+  }, [pathname, replace, searchParams, searchValue]);
 
   return (
     <div className='relative w-full'>
       <div className='relative'>
         <Input
           placeholder='Search a tv show...'
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           className='mb-2 relative'
         />
         {isFetching && (
-          <LoaderPinwheel className='text-accent-foreground absolute right-2 top-1.5 animate-spin' />
+          <LoaderPinwheel
+            size={28}
+            className='text-accent-foreground absolute text-xs  right-1 top-1 p-1 animate-spin'
+          />
+        )}
+        {searchValue?.length > 0 && !isFetching && (
+          <X
+            size={28}
+            className='p-1 rounded-full text-xs text-foreground cursor-pointer absolute top-1 right-1 hover:bg-accent duration-300 transition-all'
+            onClick={handleClear}
+          />
         )}
       </div>
       <List data={data} />

@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen items-center justify-center`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen items-center md:justify-center mt-10 md:mt-0`}
       >
         <TanstackQueryProvider>{children}</TanstackQueryProvider>
       </body>
