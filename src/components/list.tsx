@@ -13,7 +13,7 @@ export function List({ data }: { data: TSearchProps[] }) {
           <li key={show.id} className='hover:bg-secondary rounded p-2 transition-all animate-in'>
             <Link
               href={`/show/${show.id}`}
-              className='flex w-full justify-center flex-col items-start'
+              className='flex w-full justify-center flex-col items-start bg-transparent no-underline'
               replace
             >
               <div className='flex items-center space-x-2'>

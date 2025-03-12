@@ -121,4 +121,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  a {
+    @apply text-primary bg-muted underline;
+  }
 }

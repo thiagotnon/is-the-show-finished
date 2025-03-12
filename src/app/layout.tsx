@@ -3,6 +3,7 @@ import { TanstackQueryProvider } from '@/providers/tanstack-query';
 import { ThemeProvider } from '@/providers/theme-provider';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 
 const geistSans = Geist({
@@ -39,6 +40,13 @@ export default function RootLayout({
             <main>{children}</main>
           </ThemeProvider>
         </TanstackQueryProvider>
+        {/*   Google Analytics   */}
+        <Script
+          id='google_analytics_gtag'
+          strategy='lazyOnload'
+          src='https://www.googletagmanager.com/gtag/js?id=G-T116Z2TCLP'
+        />
+        <Script id='google_analytics' strategy='lazyOnload' src='/g_analytics.js' />
       </body>
     </html>
   );

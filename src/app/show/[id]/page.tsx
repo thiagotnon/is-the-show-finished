@@ -1,4 +1,5 @@
 import getDetails from '@/action/get-details';
+import { Footer } from '@/components/footer';
 import { Searchbar } from '@/components/searchbar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -90,6 +91,8 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           </Card>
         </div>
       </div>
+
+      <Footer show={data?.original_name || ''} />
     </>
   );
 }

@@ -47,7 +47,7 @@ export function Searchbar() {
 
   return (
     <div className='gap-4 flex flex-col relative max-w-lg container mx-auto md:items-center md:justify-center'>
-      <Link href='/' className='text-center flex flex-col gap-4 w-full'>
+      <Link href='/' className='text-center flex flex-col gap-4 w-full bg-transparent no-underline'>
         <h1 className='text-2xl font-extrabold'>📺 Is The Show Finished?</h1>
       </Link>
 
