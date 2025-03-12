@@ -1,10 +1,12 @@
 import { Searchbar } from '@/components/searchbar';
+import { Suspense } from 'react';
 
 export default function Home() {
   return (
-    <main className='max-h-24 md:min-w-lg flex flex-col gap-4 justify-between items-center'>
-      <h1 className='text-4xl font-extrabold '>Is The Show Finished?</h1>
-      <Searchbar />
-    </main>
+    <div className='container mx-auto max-w-4xl px-4 h-screen md:items-center md:justify-center flex pt-14 md:pt-0'>
+      <Suspense>
+        <Searchbar />
+      </Suspense>
+    </div>
   );
 }

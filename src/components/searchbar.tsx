@@ -2,6 +2,7 @@
 
 import { useSearch } from '@/hooks/use-search';
 import { LoaderPinwheel, X } from 'lucide-react';
+import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { List } from './list';
@@ -45,13 +46,17 @@ export function Searchbar() {
   }, [pathname, replace, searchParams, searchValue]);
 
   return (
-    <div className='relative w-full'>
-      <div className='relative'>
+    <div className='gap-4 flex flex-col relative max-w-lg container mx-auto md:items-center md:justify-center'>
+      <Link href='/' className='text-center flex flex-col gap-4 w-full'>
+        <h1 className='text-2xl font-extrabold'>📺 Is The Show Finished?</h1>
+      </Link>
+
+      <div className='relative w-full'>
         <Input
           placeholder='Search a tv show...'
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          className='mb-2 relative'
+          className='mb-2 relative w-full'
         />
         {isFetching && (
           <LoaderPinwheel
@@ -67,7 +72,7 @@ export function Searchbar() {
           />
         )}
       </div>
-      <List data={data} />
+      <List data={data || []} />
     </div>
   );
 }

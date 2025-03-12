@@ -1,24 +1,20 @@
+import { TSearchProps } from '@/action/search';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ScrollArea } from './ui/scroll-area';
 
-type TListProps = {
-  id: string;
-  poster_path: string;
-  original_name: string;
-  name: string;
-};
-export function List({ data }: { data: TListProps[] }) {
+export function List({ data }: { data: TSearchProps[] }) {
   if (!data || data?.length === 0) return null;
 
   return (
-    <ScrollArea className='rounded-md border absolute left-0 max-h-60 top-1 overflow-auto drop-shadow-ßlg p-1'>
+    <ScrollArea className='!absolute top-24 border rounded-lg drop-shadow-2xl max-h-64  max-w-lg overflow-y-auto z-50 bg-popover p-2 right-0 left-0'>
       <ul>
         {data?.map((show) => (
-          <li key={show.id}>
+          <li key={show.id} className='hover:bg-secondary rounded p-2 transition-all animate-in'>
             <Link
               href={`/show/${show.id}`}
-              className='flex w-full justify-center flex-col items-start hover:bg-secondary rounded-md p-2 transition-all animate-in'
+              className='flex w-full justify-center flex-col items-start'
+              replace
             >
               <div className='flex items-center space-x-2'>
                 {show.poster_path ? (
@@ -35,7 +31,7 @@ export function List({ data }: { data: TListProps[] }) {
 
                 <div className='flex flex-col'>
                   <span>{show.name}</span>
-                  <span className='text-sm'>{show.original_name}</span>
+                  <span className='text-xs text-muted-foreground'>{show.original_name}</span>
                 </div>
               </div>
             </Link>

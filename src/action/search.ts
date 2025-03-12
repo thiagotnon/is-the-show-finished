@@ -1,4 +1,11 @@
-export default async function search(query: string) {
+export type TSearchProps = {
+  id: string;
+  poster_path: string;
+  original_name: string;
+  name: string;
+};
+
+export default async function search(query: string): Promise<TSearchProps[]> {
   if (!query) return [];
 
   const response = await fetch(`/api/search?query=${query}`);
