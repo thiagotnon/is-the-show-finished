@@ -1,6 +1,12 @@
 import { Searchbar } from '@/components/searchbar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+  title: 'Legal Notice',
+  description: 'Legal notice for the Is The Show Finished? project.',
+};
 
 export default function Page() {
   return (
