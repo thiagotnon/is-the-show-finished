@@ -1,3 +1,4 @@
+import AdSense from '@/components/ad-sense';
 import { Header } from '@/components/header';
 import { TanstackQueryProvider } from '@/providers/tanstack-query';
 import { ThemeProvider } from '@/providers/theme-provider';
@@ -30,11 +31,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <head>
-        <Script
-          async
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7783316904653454'
-          crossOrigin='anonymous'
-        />
+        <AdSense pId='7783316904653454' />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}>
         <TanstackQueryProvider>
