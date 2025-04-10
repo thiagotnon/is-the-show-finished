@@ -29,6 +29,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
+      <head>
+        <Script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7783316904653454'
+          crossOrigin='anonymous'
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}>
         <TanstackQueryProvider>
           <ThemeProvider
@@ -49,12 +56,6 @@ export default function RootLayout({
         />
         <Script id='google_analytics' strategy='lazyOnload' src='/g_analytics.js' />
         <Analytics />
-
-        <Script
-          async
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7783316904653454'
-          crossOrigin='anonymous'
-        />
       </body>
     </html>
   );
