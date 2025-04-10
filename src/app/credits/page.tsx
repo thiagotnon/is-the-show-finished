@@ -1,7 +1,13 @@
 import { Searchbar } from '@/components/searchbar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+  title: 'Credits',
+  description: 'Credits for the Is The Show Finished? project.',
+};
 
 export default function Page() {
   return (
@@ -30,12 +36,6 @@ export default function Page() {
                 The Movie Database (TMDB)
               </Link>
               . This site is not affiliated with or endorsed by TMDB.
-            </p>
-
-            <h2 className='font-bold text-2xl'>Open-Source Libraries</h2>
-            <p className='my-2'>
-              This project uses various open-source libraries and frameworks. We would like to
-              acknowledge the following:
             </p>
 
             <h2 className='font-bold text-2xl'>Contact</h2>

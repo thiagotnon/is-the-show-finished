@@ -7,6 +7,39 @@ import { Dot, Popcorn } from 'lucide-react';
 import Image from 'next/image';
 import { Suspense } from 'react';
 
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const data = await getDetails(id);
+
+  return {
+    title: `${data?.original_name} – Is The Show Finished?`,
+    description: `Find out whether "${data?.original_name}" has been canceled or is still airing.`,
+    openGraph: {
+      title: `${data?.original_name} – Is The Show Finished?`,
+      description: `Check the current status of "${data?.original_name}".`,
+      url: `https://istheshowfinished.com/show/${id}`,
+      type: 'website',
+      images: [
+        {
+          url: `https://image.tmdb.org/t/p/original/${data?.poster_path}`,
+          width: 800,
+          height: 600,
+          alt: data?.original_name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${data?.original_name} – Is The Show Finished?`,
+      description: `Find out if "${data?.original_name}" has ended or not.`,
+      images: [`https://image.tmdb.org/t/p/original/${data?.poster_path}`],
+    },
+    alternates: {
+      canonical: `https://istheshowfinished.com/show/${id}`,
+    },
+  };
+}
+
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const data = await getDetails(id);

@@ -1,6 +1,7 @@
 import { Header } from '@/components/header';
 import { TanstackQueryProvider } from '@/providers/tanstack-query';
 import { ThemeProvider } from '@/providers/theme-provider';
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
@@ -47,6 +48,7 @@ export default function RootLayout({
           src='https://www.googletagmanager.com/gtag/js?id=G-T116Z2TCLP'
         />
         <Script id='google_analytics' strategy='lazyOnload' src='/g_analytics.js' />
+        <Analytics />
 
         <Script
           async
